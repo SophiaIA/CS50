@@ -1,0 +1,79 @@
+/*
+This is a part of CS50 problem sets
+Vigenere is crypting text using Vigenere cypher.
+The crypting alphabetical key should be given as a command-line argument.
+*/
+
+#include <stdio.h>
+#include <cs50.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main(int argc, string argv[])
+{
+   if (argc != 2)                                     //check if there is one and only one key given
+  {
+      printf("Missing or too much arguments!\n");
+      return 1;
+  }
+
+  string key = argv[1];
+  int keyL = strlen(key);
+
+  for (int a=0; a<keyL; a++)                           //check if key is alphabetic
+  {
+     if (!isalpha(key[a]))
+     {
+        printf("Key must be all alphabetical\n");
+        return 1;
+     }
+  }
+
+  printf ("plaintext: ");                             //ask for text
+  string text = get_string();
+
+  printf ("ciphertext: ");
+  int upix = 65;
+  int lowix = 97;
+  int count = 0;
+
+  for (int i = 0, n = strlen(text); i<n; i++)
+  {
+   int j = count%keyL;
+
+   if (!isalpha(text[i]))                               //is char alphabetic
+   {
+      printf("%c",text[i]);
+   }
+
+   else if (isupper(text[i])&&(isupper(key[j])))        //text char is upper case, key char is upper case
+   {
+      printf ("%c", (text[i]-upix+key[j]-upix)%26+upix);
+      count++;
+   }
+
+   else if (isupper(text[i])&&(islower(key[j])))            //text char is upper case, key char is lower case
+   {
+      printf ("%c", (text[i]-upix+key[j]-lowix)%26+upix);
+      count++;
+   }
+
+   else if (islower(text[i])&&(isupper(key[j])))            //text char is lower case, key char is upper case
+   {
+      printf ("%c", (text[i]-lowix+key[j]-upix)%26+lowix);
+      count++;
+   }
+
+   else
+   {
+      printf ("%c", (text[i]-lowix+key[j]-lowix)%26+lowix);
+      count++;                                                //text char is lower case, key char is lower case
+   }
+  }
+
+printf("\n");
+}
+
+
+
