@@ -1,0 +1,23 @@
+# This is Mario rewritten from C to Python
+
+import sys
+
+while True:
+    height = int(input("Height: "))
+    if height>0 and height<23:
+        break
+
+for i in range(0, height):
+    counter=1+i
+    for a in range(1, height-counter+1):
+        print(" ", sep="", end="")
+        
+    for h in range(1, counter+1):
+        print("#", sep="", end="")
+    
+    print("", end=" ")
+    
+    for c in range(1, counter+1):
+        print("#", sep="", end="")
+    
+    print("")
