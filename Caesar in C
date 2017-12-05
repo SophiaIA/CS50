@@ -1,0 +1,53 @@
+/*
+This is a part of CS50 problem sets
+Caesar is crypting text using caesar cypher.
+The crypting numeric key should be given as a command-line argument.
+*/
+
+#include <stdio.h>
+#include <cs50.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main(int argc, string argv[])
+{
+   if (argc != 2)
+  {
+      printf("Missing or too much arguments!\n");
+      return 1;
+  }
+
+  int key = atoi(argv[1]);       //convert string to int key
+
+  if (key <= 0)                  //check if key is non-negative
+    {
+        printf("key must be non-negative!\n");
+        return 1;
+    }
+
+    printf("plaintext: ");
+    string plaintext=get_string();
+
+printf("ciphertext: ");
+int upix = 65;
+int lowix = 97;
+
+for (int i=0,lenght=strlen(plaintext);i<lenght;i++)   //iterate string
+{
+    if (!isalpha(plaintext[i]))
+    {
+        printf("%c",plaintext[i]);
+    }
+    else if (isupper(plaintext[i]))
+    {
+        printf("%c", (plaintext[i]-upix+key)%26+upix);
+    }
+    else
+    {
+        printf("%c", (plaintext[i]-lowix+key)%26+lowix);
+    }
+}
+printf("\n");
+}
+
