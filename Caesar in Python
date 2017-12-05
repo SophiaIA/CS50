@@ -1,0 +1,37 @@
+# This is a part of CS50 problem sets
+# Caesar rewritten from C to Python3
+# Caesar is crypting text using caesar cypher.
+# The crypting numeric key should be given as a command-line argument.
+
+import sys
+
+#check for arguments number
+if len(sys.argv)!=2:
+    print("Usage: python caesar.py k")
+    sys.exit(1)
+
+key = int(sys.argv[1])
+
+#check if key is non-negative
+if key <= 0:
+    print("key must be non-negative!")
+    sys.exit(1)
+
+plaintext = input("plaintext: ")
+print("ciphertext: ", end="")
+
+upix = 65
+lowix = 97
+
+# iterate string
+for i in range(0, len(plaintext)):
+    if not plaintext[i].isalpha():
+        print(plaintext[i], end="")
+    elif plaintext[i].isupper():
+        cipherLetterNum = (ord(plaintext[i])-upix+key)%26+upix
+        print(chr(cipherLetterNum), end="")
+    else:
+        cipherLetterNum = (ord(plaintext[i])-lowix+key)%26+lowix
+        print(chr(cipherLetterNum), end="")
+
+print("")
