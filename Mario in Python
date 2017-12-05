@@ -1,23 +1,23 @@
-# This is Mario rewritten from C to Python
+# This is a part of CS50 Problem Sets - Mario rewritten from C to Python
+# Mario prints symetrical pyramid of hashes.
+# User is asked for the size of the pyramid (between 1 and 22)
 
 import sys
 
+# ask for pyramid height
 while True:
     height = int(input("Height: "))
     if height>0 and height<23:
         break
 
+# print pyramid
 for i in range(0, height):
     counter=1+i
     for a in range(1, height-counter+1):
-        print(" ", sep="", end="")
-        
+        print(" ", sep="", end="")  
     for h in range(1, counter+1):
         print("#", sep="", end="")
-    
     print("", end=" ")
-    
     for c in range(1, counter+1):
         print("#", sep="", end="")
-    
     print("")
