@@ -1,0 +1,61 @@
+# This is a part of CS50 problem sets
+# Vigenere rewritten from C to Python3
+# Vigenere is crypting text using Vigenere cypher.
+# The crypting alphabetical key should be given as a command-line argument.
+
+import sys
+
+#check for arguments number
+if len(sys.argv)!=2:
+    print("Usage: python vigenere.py k")
+    sys.exit(1)
+
+key = sys.argv[1]
+
+#check if key is alphabetic
+if not key.isalpha():
+    print("Key must be all alphabetical")
+    sys.exit(1)
+
+#ask for text to cipher
+text = input("plaintext: ")
+
+#variables connected with ASCII (char-number)
+upix = 65
+lowix = 97
+count = 0
+
+print("ciphertext: ", end="")
+
+for i in range(0, len(text)):
+    j = int(count%len(key))
+
+    # is char alphabetic
+    if not text[i].isalpha():
+        print(text[i], end="")
+
+    # text char is upper case, key char is upper case
+    elif text[i].isupper() and key[j].isupper():
+        numForLetter = (ord(text[i])-upix+ord(key[j])-upix)%26+upix
+        print(chr(numForLetter), end="")
+        count=count+1
+
+    # text char is upper case, key char is lower case
+    elif text[i].isupper() and key[j].islower():
+        numForLetter = (ord(text[i])-upix+ord(key[j])-lowix)%26+upix
+        print(chr(numForLetter), end="")
+        count=count+1
+
+    # text char is lower case, key char is upper case
+    elif text[i].islower() and key[j].isupper():
+        numForLetter = (ord(text[i])-lowix+ord(key[j])-upix)%26+lowix
+        print(chr(numForLetter), end="")
+        count=count+1
+
+    # text char is lower case, key char is lower case
+    else:
+        numForLetter = (ord(text[i])-lowix+ord(key[j])-lowix)%26+lowix
+        print(chr(numForLetter), end="")
+        count=count+1
+
+print()
