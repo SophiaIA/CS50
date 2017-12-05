@@ -1,6 +1,8 @@
-# This is a part of CS50 Problem Sets
-# Mario prints symetrical pyramid of hashes.
-# User is asked for the size of the pyramid (between 1 and 22)
+/*
+This is a part of CS50 Problem Sets
+Mario prints symetrical pyramid of hashes.
+User is asked for the size of the pyramid (between 1 and 22)
+*/
 
 #include<stdio.h>
 #include<cs50.h>
@@ -10,7 +12,7 @@ int main(void){
     int height;
     int counter;
     
-    #ask for height
+    /* ask for height */
     do
     {
     printf("Height: ");
@@ -18,7 +20,7 @@ int main(void){
     }
     while(height<0||height>23);
 
-    #print pyramid
+    /* print pyramid */
     for(int i=0;i<height;i++)
     {
         counter=1+i;
